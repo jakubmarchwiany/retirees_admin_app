@@ -4,6 +4,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { theme } from "assets/theme";
 import "dayjs/locale/pl";
 import { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App";
 import validateEnv from "./utils/validate-env";
 
