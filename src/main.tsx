@@ -5,6 +5,7 @@ import { theme } from "assets/theme";
 import "dayjs/locale/pl";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
+import store from "store/index";
 import App from "./App";
 import validateEnv from "./utils/validate-env";
 
@@ -16,7 +17,9 @@ root.render(
     <StrictMode>
         <ThemeProvider theme={theme}>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"pl"}>
+                <Provider store={store}>
                             <App />
+                </Provider>
             </LocalizationProvider>
         </ThemeProvider>
     </StrictMode>,
