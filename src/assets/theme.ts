@@ -3,9 +3,9 @@ import "@fontsource/montserrat/400.css";
 import "@fontsource/montserrat/500.css";
 import "@fontsource/montserrat/600.css";
 import "@fontsource/montserrat/700.css";
-import { createTheme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 
-export const theme = createTheme({
+let theme = createTheme({
     palette: {
         primary: {
             main: "#133478",
@@ -34,3 +34,8 @@ export const theme = createTheme({
         },
     },
 });
+
+theme = responsiveFontSizes(theme);
+
+export { theme };
+
