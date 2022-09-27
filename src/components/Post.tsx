@@ -6,7 +6,7 @@ import {
     Divider,
     IconButton,
     Stack,
-    Typography,
+    Typography
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -53,9 +53,16 @@ function Post({ post, handleDelete }: Props) {
             }}
         >
             <CardHeader
-                title={<Typography variant='h4'>{post.title}</Typography>}
+                title={
+                    <Typography sx={{ typography: { xs: "h6", sm: "h4" } }}>
+                        {post.title}
+                    </Typography>
+                }
                 subheader={
-                    <Typography variant='h6' alignContent={"center"}>
+                    <Typography
+                        sx={{ typography: { xs: "caption", sm: "h6" } }}
+                        alignContent={"center"}
+                    >
                         {subheader()}
                     </Typography>
                 }
@@ -94,7 +101,7 @@ function Post({ post, handleDelete }: Props) {
                     <ExpandMore />
                 </ExpandMoreIcon>
 
-                <Typography variant='h5' alignContent={"center"}>
+                <Typography variant='h6' alignContent={"center"}>
                     Więcej informacji
                 </Typography>
                 <ExpandMoreIcon

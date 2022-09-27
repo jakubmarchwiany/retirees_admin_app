@@ -1,8 +1,8 @@
 import { Box, Stack } from "@mui/material";
 import "assets/app.css";
-import NewPost from "components/admin/NewPost";
-import Home from "components/main/Home";
-import NotFound from "components/main/NotFound";
+import Home from "components/Home";
+import NewPost from "components/NewPost";
+import NotFound from "components/NotFound";
 import { useAppDispatch } from "hooks/redux";
 import Cookies from "js-cookie";
 import Footer from "layouts/Footer";
@@ -23,7 +23,7 @@ function App() {
         if (Cookies.get("Authorization") !== undefined) {
             dispatch(autoLogin(setIsLoading));
         } else {
-            // if (!DEV) window.location.href = window.location.origin;
+            if (!DEV) window.location.href = window.location.origin;
         }
     }, []);
 

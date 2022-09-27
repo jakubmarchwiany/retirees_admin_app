@@ -4,7 +4,6 @@ import { uiActions } from "store/ui-slice";
 const { DEV, VITE_DEV_API_ENDPOINT: DEV_API_ENDPOINT } = import.meta.env;
 
 const END_POINT: string = DEV ? DEV_API_ENDPOINT : window.location.origin + "/api";
-console.log(window.location.origin);
 
 type statusType = "error" | "info" | "success" | "warning";
 

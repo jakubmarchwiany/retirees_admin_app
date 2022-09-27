@@ -10,8 +10,7 @@ export const autoLogin =
             .then(() => {
                 isLoading(false);
             })
-            .catch((error) => {
-                console.log(error);
-                // if (!DEV) window.location.href = window.location.origin;
+            .catch(() => {
+                if (!DEV) window.location.href = window.location.origin;
             });
     };

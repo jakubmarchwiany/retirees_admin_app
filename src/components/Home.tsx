@@ -50,10 +50,13 @@ function Home() {
 
     return (
         <Stack
-            sx={{ mx: { xs: 1, sm: 10, md: 20, lg: 30, xl: 40 }, my: 3 }}
+            sx={{
+                mx: { xs: 1, sm: 10, md: 20, lg: 30, xl: 40 },
+                my: { xs: 1, sm: 1.5, lg: 2 },
+            }}
             justifyContent='center'
             alignItems='center'
-            spacing={3}
+            spacing={{ xs: 1, sm: 1.5, lg: 2 }}
         >
             <Pagination
                 size='large'
