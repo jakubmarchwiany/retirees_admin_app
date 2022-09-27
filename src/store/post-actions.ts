@@ -33,6 +33,12 @@ export const newInformation =
             appDispatch(uiActions.showErrorNotification("Musisz wprowadzić tytuł posta"));
             return;
         }
+        if (title.length > 27) {
+            appDispatch(
+                uiActions.showErrorNotification("Tytuł posta nie może być dłuższy niż 27 znaków"),
+            );
+            return;
+        }
         if (startDate === null) {
             appDispatch(uiActions.showErrorNotification("Musisz wybrać datę rozpoczęcia podróży"));
             return;
@@ -71,6 +77,12 @@ export const newTrip =
     async (appDispatch) => {
         if (title === "") {
             appDispatch(uiActions.showErrorNotification("Musisz wprowadzić tytuł posta"));
+            return;
+        }
+        if (title.length > 27) {
+            appDispatch(
+                uiActions.showErrorNotification("Tytuł posta nie może być dłuższy niż 27 znaków"),
+            );
             return;
         }
         if (startDate === null) {
