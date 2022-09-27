@@ -37,7 +37,7 @@ function Navbar() {
             }}
         >
             <Toolbar sx={{ justifyContent: "space-between", alignContent: "center" }}>
-                <Stack direction='row'>
+                <Stack direction='row' alignItems='center'>
                     <LocationCity
                         fontSize='large'
                         sx={{
@@ -54,7 +54,7 @@ function Navbar() {
                             textDecoration: "none",
                         }}
                     >
-                        Chełmscy Emeryci SW
+                        CHEŁMSCY EMERYCI SW
                     </Typography>
                 </Stack>
 
