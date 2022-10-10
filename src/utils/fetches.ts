@@ -1,9 +1,9 @@
 import { AppDispatch } from "store";
 import { uiActions } from "store/ui-slice";
 
-const { DEV, VITE_DEV_API_ENDPOINT: DEV_API_ENDPOINT } = import.meta.env;
+const { DEV, VITE_DEV_BACKEND_URL } = import.meta.env;
 
-const END_POINT: string = DEV ? DEV_API_ENDPOINT : window.location.origin + "/api";
+const BACKEND_URL: string = DEV ? VITE_DEV_BACKEND_URL : window.location.origin + "/backend";
 
 type statusType = "error" | "info" | "success" | "warning";
 
@@ -15,7 +15,7 @@ export async function getFetch<T>(
     customError = false,
 ): Promise<T & { message: string }> {
     return new Promise((resolve, reject) => {
-        fetch(END_POINT + url, {
+        fetch(BACKEND_URL + url, {
             method: "GET",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -51,7 +51,7 @@ export async function postFetch<T>(
     customError = false,
 ): Promise<T & { message: string }> {
     return new Promise((resolve, reject) => {
-        fetch(END_POINT + url, {
+        fetch(BACKEND_URL + url, {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ export async function imageFetch<T>(
     customError = false,
 ): Promise<T & { message: string }> {
     return new Promise((resolve, reject) => {
-        fetch(END_POINT + url, {
+        fetch(BACKEND_URL + url, {
             method: "POST",
             credentials: "include",
             body: body,

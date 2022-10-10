@@ -1,7 +1,7 @@
 import { AppThunk } from "store";
 import { getFetch } from "utils/fetches";
 
-const { DEV } = import.meta.env;
+const { PROD } = import.meta.env;
 
 export const autoLogin =
     (isLoading: Function): AppThunk =>
@@ -11,6 +11,6 @@ export const autoLogin =
                 isLoading(false);
             })
             .catch(() => {
-                if (!DEV) window.location.href = window.location.origin;
+                if (PROD) window.location.href = window.location.origin;
             });
     };

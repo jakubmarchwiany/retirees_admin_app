@@ -1,9 +1,11 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-    readonly VITE_DEV_API_ENDPOINT: string;
-    readonly VITE_PRO_API_ENDPOINT: string;
-    readonly VITE_IMAGE_PATH: string;
+    readonly VITE_DEV_BACKEND_URL: string;
+
+    readonly VITE_POSTS_FILE_NAME: string;
+    readonly VITE_POSTS_FOLDER: string;
+    readonly VITE_GOOGLE_BUCKET_URL: string;
 }
 
 interface ImportMeta {

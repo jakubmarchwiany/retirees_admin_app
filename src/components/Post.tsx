@@ -6,7 +6,7 @@ import {
     Divider,
     IconButton,
     Stack,
-    Typography
+    Typography,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -20,7 +20,7 @@ import { PostType } from "store/app-slice";
 dayjs.locale("pl");
 dayjs.extend(relativeTime);
 
-const { VITE_IMAGE_PATH } = import.meta.env;
+const { MODE, VITE_GOOGLE_BUCKET_URL, VITE_POSTS_FOLDER } = import.meta.env;
 
 type Props = {
     post: PostType;
@@ -78,7 +78,7 @@ function Post({ post, handleDelete }: Props) {
                 <>
                     <CardMedia
                         component='img'
-                        image={VITE_IMAGE_PATH + post.imageID}
+                        image={`${VITE_GOOGLE_BUCKET_URL}/${MODE}/${VITE_POSTS_FOLDER}/${post.imageID}`}
                         sx={{ objectFit: "contain", minWidth: "100%" }}
                     />
                     <Divider />
