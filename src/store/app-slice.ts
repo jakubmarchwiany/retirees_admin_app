@@ -11,14 +11,12 @@ export type PostType = {
 };
 
 type AppState = {
-    page: number;
     isLoading: boolean;
     posts: PostType[] | null;
     numberOfPages: number | null;
 };
 
 const initialState: AppState = {
-    page: 1,
     isLoading: true,
     posts: null,
     numberOfPages: 1,
@@ -33,9 +31,6 @@ const appSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setPage(state, action: PayloadAction<number>) {
-            state.page = action.payload;
-        },
         setLoading(state, action: PayloadAction<boolean>) {
             state.isLoading = action.payload;
         },
