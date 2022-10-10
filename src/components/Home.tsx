@@ -11,10 +11,11 @@ function Home() {
     const dispatch = useAppDispatch();
     const [openDialog, setOpenDialog] = useState(false);
     const [post, setPost] = useState<PostType>();
+    const [page, setPage] = useState(1);
+
     const posts = useAppSelector((state) => state.app.posts);
     const numberOfPages = useAppSelector((state) => state.app.numberOfPages);
     const isLoading = useAppSelector((state) => state.app.isLoading);
-    const page = useAppSelector((state) => state.app.page);
 
     const handleDelete = (post: PostType) => {
         setPost(post);
@@ -32,18 +33,17 @@ function Home() {
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         document.getElementById("scroller").scroll(0, 0);
-        dispatch(appActions.setPage(value));
+        setPage(value);
         dispatch(appActions.setLoading(true));
     };
 
     useEffect(() => {
-        if (isLoading) {
-            dispatch(getPosts(page - 1));
-        }
+        dispatch(getPosts());
     }, [isLoading]);
 
     const generatePosts = () => {
-        return posts.map((item, index) => {
+        const index = (page - 1) * 5;
+        return posts?.slice(index, index + 5).map((item) => {
             return <Post key={item.id} post={item} handleDelete={handleDelete} />;
         });
     };
