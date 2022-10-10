@@ -25,4 +25,3 @@ const useStableNavigate = (): NavigateFunction => {
     return navigateRef.current;
 };
 export { StableNavigateContext, StableNavigateContextProvider, useStableNavigate };
-

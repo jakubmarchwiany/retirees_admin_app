@@ -1,3 +1,4 @@
+import { Cookie } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import "assets/app.css";
 import Home from "components/Home";
@@ -5,6 +6,7 @@ import NewPost from "components/NewPost";
 import NotFound from "components/NotFound";
 import { useAppDispatch } from "hooks/redux";
 import Cookies from "js-cookie";
+
 import Footer from "layouts/Footer";
 import LoadingPage from "layouts/LoadingPage";
 import Navbar from "layouts/Navbar";
@@ -13,7 +15,7 @@ import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { autoLogin } from "store/auth-actions";
 
-const { DEV } = import.meta.env;
+const { PROD } = import.meta.env;
 
 function App() {
     const dispatch = useAppDispatch();
@@ -23,7 +25,7 @@ function App() {
         if (Cookies.get("Authorization") !== undefined) {
             dispatch(autoLogin(setIsLoading));
         } else {
-            if (!DEV) window.location.href = window.location.origin;
+            if (PROD) window.location.href = window.location.origin;
         }
     }, []);
 
