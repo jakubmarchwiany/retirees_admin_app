@@ -1,7 +1,17 @@
 {
-    "name": "my-vue-app",
-    "private": true,
-    "version": "0.0.0",
+    "name": "retirees-admin-app",
+    "version": "1.0.0",
+    "description": "Retirees Admin App",
+    "homepage": "https://github.com/xkvbikx/retirees-admin-app",
+    "license": "GPL-3.0-or-later",
+    "author": {
+        "name": "Jakub Marchwiany",
+        "email": "jacobmarchwiany@gmail.com"
+    },
+    "engines": {
+        "node": "~16.15.1",
+        "npm": "~8.19.2"
+    },
     "type": "module",
     "scripts": {
         "start": "vite",
