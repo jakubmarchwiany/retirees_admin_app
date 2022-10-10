@@ -6,25 +6,17 @@ import { getFetch, imageFetch, postFetch } from "utils/fetches";
 import { appActions, PostType } from "./app-slice";
 import { uiActions } from "./ui-slice";
 
-export const getPosts =
-    (page: number): AppThunk =>
-    async (appDispatch) => {
-        await getFetch<{ posts: PostType[]; numberOfPages: number }>(
-            `/posts?page=${page}`,
-            appDispatch,
-            undefined,
-            undefined,
-            true,
-        )
-            .then(({ posts, numberOfPages }) => {
-                appDispatch(appActions.setPosts({ posts, numberOfPages }));
-                appDispatch(appActions.setLoading(false));
-            })
-            .catch(() => {
-                appDispatch(appActions.setPosts({ posts: [], numberOfPages: 0 }));
-                appDispatch(appActions.setLoading(false));
-            });
-    };
+export const getPosts = (): AppThunk => async (appDispatch) => {
+    await getFetch<{ posts: PostType[] }>(`/posts/get`, appDispatch, undefined, undefined, true)
+        .then(({ posts }) => {
+            appDispatch(appActions.setPosts({ posts, numberOfPages: Math.ceil(posts.length / 5) }));
+            appDispatch(appActions.setLoading(false));
+        })
+        .catch(() => {
+            appDispatch(appActions.setPosts({ posts: [], numberOfPages: 0 }));
+            appDispatch(appActions.setLoading(false));
+        });
+};
 
 export const newInformation =
     (title: string, startDate: Dayjs, content: string, navigate: NavigateFunction): AppThunk =>
