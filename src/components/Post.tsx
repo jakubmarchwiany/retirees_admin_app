@@ -35,19 +35,37 @@ function Post({ post, handleDelete }: Props) {
         setExpanded(!expanded);
     };
 
+    const isSameDay = () => {
+        if (dayjs(post.startDate).isSame(post.endDate, "day")) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     const subheader = () => {
-        if (post.isTrip)
-            return `Data wyjazdu: ${dayjs(post.startDate).format("DD.MM.YYYY")} - ${dayjs(
-                post.endDate,
-            ).format("DD.MM.YYYY")} (${dayjs(post.startDate).fromNow()})`;
-        else return `Data: ${dayjs(post.startDate).format("DD.MM.YYYY")}`;
+        if (post.isTrip) {
+            if (isSameDay()) {
+                return `Data rozpoczęcia [ ${dayjs(post.startDate).format(
+                    "DD.MM.YYYY"
+                )} ] [ jednodniowa ] [ ${dayjs(post.startDate).fromNow()} ]`;
+            } else {
+                return `Data rozpoczęcia [ ${dayjs(post.startDate).format(
+                    "DD.MM.YY"
+                )} ] do [ ${dayjs(post.endDate).format("DD.MM.YY")} ] [ ${dayjs(
+                    post.startDate
+                ).fromNow()} ]`;
+            }
+        } else {
+            return `Data  [ ${dayjs(post.startDate).format("DD.MM.YYYY")} ]`;
+        }
     };
 
     return (
         <Card
             sx={{
                 width: "100%",
-                borderRadius: "1%",
+                borderRadius: 2,
                 backgroundColor: "background.default",
                 boxShadow: 15,
             }}
@@ -67,7 +85,7 @@ function Post({ post, handleDelete }: Props) {
                     </Typography>
                 }
                 action={
-                    <IconButton aria-label='settings' onClick={() => handleDelete(post)}>
+                    <IconButton aria-label="settings" onClick={() => handleDelete(post)}>
                         <Delete sx={{ color: "red" }} />
                     </IconButton>
                 }
@@ -77,7 +95,7 @@ function Post({ post, handleDelete }: Props) {
             {post.isTrip && (
                 <>
                     <CardMedia
-                        component='img'
+                        component="img"
                         image={`${VITE_GOOGLE_BUCKET_URL}/${MODE}/${VITE_POSTS_FOLDER}/${post.imageID}`}
                         sx={{ objectFit: "contain", minWidth: "100%" }}
                     />
@@ -89,32 +107,32 @@ function Post({ post, handleDelete }: Props) {
                 component={Button}
                 fullWidth
                 direction={"row"}
-                justifyContent='center'
+                justifyContent="center"
                 onClick={handleExpandClick}
             >
                 <ExpandMoreIcon
                     expand={expanded}
                     aria-expanded={expanded}
-                    aria-label='show more'
+                    aria-label="show more"
                     sx={{ height: "32px" }}
                 >
                     <ExpandMore />
                 </ExpandMoreIcon>
 
-                <Typography variant='h6' alignContent={"center"}>
+                <Typography variant="h6" alignContent={"center"}>
                     Więcej informacji
                 </Typography>
                 <ExpandMoreIcon
                     expand={expanded}
                     aria-expanded={expanded}
-                    aria-label='show more'
+                    aria-label="show more"
                     sx={{ height: "32px" }}
                 >
                     <ExpandMore />
                 </ExpandMoreIcon>
             </Stack>
 
-            <Collapse in={expanded} timeout='auto' unmountOnExit>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent sx={{ mx: "2%", my: "2%" }}>{parse(post.content)}</CardContent>
             </Collapse>
         </Card>

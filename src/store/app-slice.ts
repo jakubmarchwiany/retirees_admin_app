@@ -11,28 +11,33 @@ export type PostType = {
 };
 
 type AppState = {
-    isLoading: boolean;
-    posts: PostType[] | null;
-    numberOfPages: number | null;
+    refresh: boolean;
+    isLoaded: boolean;
+    posts: PostType[] | undefined;
+    numberOfPages: number | undefined;
 };
 
 const initialState: AppState = {
-    isLoading: true,
-    posts: null,
+    refresh: true,
+    isLoaded: false,
+    posts: undefined,
     numberOfPages: 1,
 };
 
 type PropsSetRefresh = {
-    posts: PostType[];
-    numberOfPages: number;
+    posts: PostType[] | undefined;
+    numberOfPages: number | undefined;
 };
 
 const appSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setLoading(state, action: PayloadAction<boolean>) {
-            state.isLoading = action.payload;
+        setRefresh(state, action: PayloadAction<boolean>) {
+            state.refresh = action.payload;
+        },
+        setIsLoaded(state, action: PayloadAction<boolean>) {
+            state.isLoaded = action.payload;
         },
         setPosts(state, action: PayloadAction<PropsSetRefresh>) {
             state.posts = action.payload.posts;

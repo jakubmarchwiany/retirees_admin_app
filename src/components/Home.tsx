@@ -3,19 +3,20 @@ import { Stack } from "@mui/system";
 import DialogConfirm from "components/my/DialogConfirm";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { useEffect, useState } from "react";
-import { appActions, PostType } from "store/app-slice";
+import { PostType } from "store/app-slice";
 import { deleteInformation, deleteTrip, getPosts } from "store/post-actions";
 import Post from "./Post";
 
 function Home() {
-    const dispatch = useAppDispatch();
     const [openDialog, setOpenDialog] = useState(false);
     const [post, setPost] = useState<PostType>();
     const [page, setPage] = useState(1);
 
-    const posts = useAppSelector((state) => state.app.posts);
+    const dispatch = useAppDispatch();
+    const isLoaded = useAppSelector((state) => state.app.isLoaded);
+    const refresh = useAppSelector((state) => state.app.refresh);
     const numberOfPages = useAppSelector((state) => state.app.numberOfPages);
-    const isLoading = useAppSelector((state) => state.app.isLoading);
+    const posts = useAppSelector((state) => state.app.posts);
 
     const handleDelete = (post: PostType) => {
         setPost(post);
@@ -34,12 +35,11 @@ function Home() {
     const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         document.getElementById("scroller").scroll(0, 0);
         setPage(value);
-        dispatch(appActions.setLoading(true));
     };
 
     useEffect(() => {
-        dispatch(getPosts());
-    }, [isLoading]);
+        if (refresh) dispatch(getPosts());
+    }, [refresh, isLoaded]);
 
     const generatePosts = () => {
         const index = (page - 1) * 5;
@@ -52,33 +52,36 @@ function Home() {
         <Stack
             sx={{
                 mx: { xs: 1, sm: 10, md: 20, lg: 30, xl: 40 },
-                my: { xs: 1, sm: 1.5, lg: 2 },
             }}
-            justifyContent='center'
-            alignItems='center'
+            justifyContent="center"
+            alignItems="center"
             spacing={{ xs: 1, sm: 1.5, lg: 2 }}
         >
             <Pagination
-                size='large'
+                size="large"
                 count={numberOfPages}
                 page={page}
                 onChange={handlePageChange}
             />
-            {isLoading ? (
+            {isLoaded ? (
+                posts ? (
+                    generatePosts()
+                ) : (
+                    <Typography variant="h2">Brak postów</Typography>
+                )
+            ) : (
                 <>
                     <Stack width={"100%"} spacing={0.5}>
-                        <Skeleton variant='rounded' width={"60%"} height={45} />
-                        <Skeleton variant='rounded' width={"40%"} height={35} />
-                        <Skeleton variant='rounded' width={"100%"} height={710} />
-                        <Skeleton variant='rounded' width={"100%"} height={55} />
+                        <Skeleton variant="rounded" width={"60%"} height={45} />
+                        <Skeleton variant="rounded" width={"40%"} height={35} />
+                        <Skeleton variant="rounded" width={"100%"} height={710} />
+                        <Skeleton variant="rounded" width={"100%"} height={55} />
                     </Stack>
                 </>
-            ) : (
-                generatePosts()
             )}
-            {posts?.length === 0 && <Typography variant='h2'>Brak postów</Typography>}
+
             <Pagination
-                size='large'
+                size="large"
                 count={numberOfPages}
                 page={page}
                 onChange={handlePageChange}
