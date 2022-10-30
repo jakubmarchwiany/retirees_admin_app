@@ -28,16 +28,16 @@ function DialogConfirm(props: Props) {
             open={open}
             {...other}
         >
-            <DialogTitle variant='h6'>
+            <DialogTitle variant="h6">
                 {title !== undefined ? title : "Czy na pewno chcesz to zrobić?"}
             </DialogTitle>
             <DialogContent dividers>{content}</DialogContent>
             <DialogActions>
-                <Button variant='outlined' color='primary' fullWidth onClick={handleCancel}>
+                <Button variant="outlined" color="primary" fullWidth onClick={handleCancel}>
                     Anuluj
                 </Button>
                 <Button
-                    variant='contained'
+                    variant="contained"
                     color={isDelete ? "error" : "success"}
                     fullWidth
                     onClick={handleOk}

@@ -4,10 +4,10 @@ import { Stack, Theme, useMediaQuery, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import MuiLink from "@mui/material/Link";
 import Menu from "@mui/material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
 import { memo, useState } from "react";
 import { Link } from "react-router-dom";
 import Navigator from "./Navigator";
@@ -29,7 +29,7 @@ function Navbar() {
     return (
         <AppBar
             elevation={0}
-            position='static'
+            position="static"
             sx={{
                 top: "auto",
                 background: "transparent",
@@ -37,46 +37,48 @@ function Navbar() {
             }}
         >
             <Toolbar sx={{ justifyContent: "space-between", alignContent: "center" }}>
-                <Stack direction='row' alignItems='center'>
+                <Stack direction="row" alignItems="center">
                     <LocationCity
-                        fontSize='large'
+                        fontSize="large"
                         sx={{
                             mr: 2,
                             color: "#fff",
                         }}
                     />
-                    <Typography
-                        variant='h6'
-                        component={Link}
-                        to='/admin/home'
-                        sx={{
-                            color: "#fff",
-                            textDecoration: "none",
-                        }}
-                    >
-                        CHEŁMSCY EMERYCI SW
-                    </Typography>
+
+                    <Link to="/admin/home" style={{ textDecoration: "none" }}>
+                        <MuiLink
+                            component="p"
+                            variant="h6"
+                            underline="hover"
+                            sx={{
+                                color: "#fff",
+                            }}
+                        >
+                            Chełmscy Emeryci SW
+                        </MuiLink>
+                    </Link>
                 </Stack>
 
                 {bigScreen ? (
                     <Navigator closeMenu={handleCloseMenu} menu={false} />
                 ) : (
                     <Box>
-                        <Tooltip title='Nawigator'>
+                        <Tooltip title="Nawigator">
                             <IconButton
-                                id='demo-positioned-button'
+                                id="demo-positioned-button"
                                 aria-expanded={open ? "true" : undefined}
                                 aria-controls={open ? "demo-positioned-menu" : undefined}
-                                aria-haspopup='true'
+                                aria-haspopup="true"
                                 onClick={handleClick}
-                                color='inherit'
+                                color="inherit"
                             >
                                 <MenuIcon />
                             </IconButton>
                         </Tooltip>
                         <Menu
-                            id='demo-positioned-menu'
-                            aria-labelledby='demo-positioned-button'
+                            id="demo-positioned-menu"
+                            aria-labelledby="demo-positioned-button"
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleCloseMenu}

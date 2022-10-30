@@ -40,8 +40,8 @@ function NewPost() {
     return (
         <Stack
             sx={{ mx: { xs: 1, sm: 10, md: 20, lg: 30, xl: 40 } }}
-            justifyContent='center'
-            alignItems='center'
+            justifyContent="center"
+            alignItems="center"
         >
             <Avatar
                 sx={{
@@ -52,14 +52,14 @@ function NewPost() {
                     color: "white",
                 }}
             >
-                <PostAdd fontSize='large' />
+                <PostAdd fontSize="large" />
             </Avatar>
 
-            <Typography component='h1' variant='h4' mb={2}>
+            <Typography component="h1" variant="h4" mb={2}>
                 Nowa
             </Typography>
             <MyToggleButtonGroup
-                color='secondary'
+                color="secondary"
                 value={isTrip}
                 exclusive
                 onChange={(event, value: boolean) => {
@@ -74,7 +74,7 @@ function NewPost() {
             <MyTextField
                 autoFocus={true}
                 sx={{ mb: 3, width: "60%" }}
-                name='title'
+                name="title"
                 label={"Tytuł"}
                 value={title}
                 onChange={handleTitleChange}
@@ -82,7 +82,7 @@ function NewPost() {
 
             <Stack direction={"row"} justifyContent={"center"} spacing={5} mb={2}>
                 <DatePicker
-                    label={isTrip ? "Data wyjazdu" : "Data"}
+                    label={isTrip ? "Data rozpoczęcia" : "Data"}
                     value={startDate}
                     minDate={new Date()}
                     onChange={(newValue) => {
@@ -101,7 +101,7 @@ function NewPost() {
                 />
                 {isTrip && (
                     <DatePicker
-                        label='Data przyjazdu'
+                        label="Data zakończenia"
                         value={endDate}
                         minDate={startDate}
                         onChange={(newValue) => {
@@ -129,7 +129,7 @@ function NewPost() {
                             .getEditableElement()
                             .parentElement.insertBefore(
                                 editor.ui.view.toolbar.element,
-                                editor.ui.getEditableElement(),
+                                editor.ui.getEditableElement()
                             );
 
                         // this.editor = editor;
@@ -152,9 +152,9 @@ function NewPost() {
             </Box>
 
             <Button
-                type='button'
+                type="button"
                 fullWidth
-                variant='contained'
+                variant="contained"
                 onClick={handleNewPost}
                 sx={{ mt: 3, mb: 2 }}
             >

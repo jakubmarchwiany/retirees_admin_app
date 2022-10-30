@@ -43,7 +43,7 @@ const MyTextField = (props: TextFieldProps & MyTextFieldType) => (
         placeholder={props.placeholder !== undefined ? props.placeholder : undefined}
         autoComplete={props.autoComplete !== undefined ? props.autoComplete : props.name}
         fullWidth
-        margin='normal'
+        margin="normal"
         value={props.value}
         onChange={props.onChange}
     />

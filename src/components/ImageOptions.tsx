@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import MyModal from "components/my/MyModal";
 import "cropperjs/dist/cropper.css";
 import { useState } from "react";
@@ -54,8 +54,8 @@ function ImageOptions({ setCropData, cropData }: Props) {
         <>
             <Button
                 sx={{ mb: 2 }}
-                type='button'
-                variant='contained'
+                type="button"
+                variant="contained"
                 fullWidth
                 onClick={() => {
                     setOpenChangeImage(true);
@@ -69,16 +69,19 @@ function ImageOptions({ setCropData, cropData }: Props) {
                 onClose={handleCloseChangeImage}
                 sx={{
                     overflow: "scroll",
-                    height: "80%",
                     display: "block",
                 }}
             >
                 <Stack bgcolor={"background.paper"} color={"text.primary"}>
-                    <Button variant='contained' component='label'>
+                    <Button variant="contained" component="label">
                         Wybierz zdjęcie
-                        <input hidden accept='image/*' type='file' onChange={onChange} />
+                        <input hidden accept="image/*" type="file" onChange={onChange} />
                     </Button>
                     <Cropper
+                        style={{
+                            maxHeight: "40vh",
+                            maxWidth: "80vw",
+                        }}
                         aspectRatio={16 / 9}
                         src={image}
                         viewMode={1}
@@ -92,17 +95,19 @@ function ImageOptions({ setCropData, cropData }: Props) {
                         guides={true}
                     />
                     <Button
-                        type='button'
-                        variant='contained'
+                        type="button"
+                        variant="contained"
                         onClick={getCropData}
                         disabled={!image}
                     >
                         Wytnij
                     </Button>
-                    <img src={cropData} alt='Wycięte zdjęcie' />
+
+                    <Box component="img" height="40hw" width="80vw" src={cropData} />
+
                     <Button
-                        type='button'
-                        variant='contained'
+                        type="button"
+                        variant="contained"
                         disabled={!cropData}
                         onClick={handleChangeImage}
                     >
