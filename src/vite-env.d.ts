@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-    readonly VITE_DEV_BACKEND_URL: string;
+    readonly VITE_BACKEND_URL: string;
 
     readonly VITE_POSTS_FILE_NAME: string;
     readonly VITE_POSTS_FOLDER: string;
