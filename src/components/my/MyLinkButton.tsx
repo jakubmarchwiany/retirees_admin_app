@@ -1,40 +1,43 @@
 import { Button, SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { NavLink, NavLinkProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type Props = {
-    to?: string;
     text: string;
-    Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+    to: string;
+    isActive?: boolean;
+    size?: "small" | "medium" | "large";
+    textColor?: string;
+    Icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
         muiName: string;
     };
-    isActive: boolean;
+    fullWidth?: boolean;
     closeMenu?: () => void;
-} & NavLinkProps;
-
-const activeStyle = {
-    textDecoration: "none",
-    fontWeight: "bold",
-    display: "none",
 };
 
-const noActiveStyle = {
-    textDecoration: "none",
-};
-
-function MyLinkButton({ isActive, to, text, Icon, closeMenu }: Props) {
+function MyLinkButton({
+    text,
+    to,
+    isActive = false,
+    size = "large",
+    textColor = "secondary.contrastText",
+    Icon,
+    fullWidth = true,
+    closeMenu,
+}: Props) {
     return (
-        <NavLink to={to} onClick={closeMenu} style={isActive ? activeStyle : noActiveStyle}>
+        <Link to={to} style={{ textDecoration: "none" }}>
             <Button
-                size='large'
-                startIcon={<Icon fontSize='large' />}
+                size={size}
+                startIcon={Icon && <Icon />}
+                disabled={isActive}
+                sx={{ color: textColor }}
+                fullWidth={fullWidth}
                 onClick={closeMenu}
-                fullWidth
-                sx={{ fontWeight: "inherit", color: "primary" }}
             >
                 {text}
             </Button>
-        </NavLink>
+        </Link>
     );
 }
 
