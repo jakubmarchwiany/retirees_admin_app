@@ -9,7 +9,7 @@ import Footer from "layouts/Footer";
 import LoadingPage from "layouts/LoadingPage";
 import Navbar from "layouts/Navbar";
 import { useEffect, useState } from "react";
-import toast, { Toaster, useToasterStore } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { autoLogin } from "store/auth-actions";
 import { authorizationFail } from "utils/fetches";
@@ -17,7 +17,6 @@ import { authorizationFail } from "utils/fetches";
 function App() {
     const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(true);
-    const { toasts } = useToasterStore();
 
     useEffect(() => {
         if (Cookies.get("Authorization") !== undefined) {
@@ -26,14 +25,6 @@ function App() {
             authorizationFail();
         }
     }, []);
-
-    // Enforce Limit
-    useEffect(() => {
-        toasts
-            .filter((t) => t.visible) // Only consider visible toasts
-            .filter((_, i) => i >= 3) // Is toast index over limit
-            .forEach((t) => toast.dismiss(t.id)); // Dismiss – Use toast.remove(t.id) removal without animation
-    }, [toasts]);
 
     return isLoading ? (
         <LoadingPage />
