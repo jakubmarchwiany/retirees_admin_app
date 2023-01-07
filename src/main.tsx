@@ -29,5 +29,5 @@ root.render(
                 </Provider>
             </LocalizationProvider>
         </ThemeProvider>
-    </StrictMode>,
+    </StrictMode>
 );

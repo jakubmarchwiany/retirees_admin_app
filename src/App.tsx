@@ -29,7 +29,7 @@ function App() {
     return isLoading ? (
         <LoadingPage />
     ) : (
-        <Stack height="100vh" display="flex" flexDirection="column" className="background">
+        <Stack minHeight={"100vh"} display="flex" flexDirection="column" className="background">
             <Navbar />
             <Box
                 component={"main"}
@@ -37,7 +37,7 @@ function App() {
                 flex={1}
                 overflow="auto"
                 color="primary.contrastText"
-                py={{ xs: 1, sm: 2, md: 3, lg: 4 }}
+                py={{ xs: 1, sm: 2, lg: 3 }}
             >
                 <Routes>
                     <Route key="/admin" path="admin">

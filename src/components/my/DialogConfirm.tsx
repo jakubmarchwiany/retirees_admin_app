@@ -31,7 +31,11 @@ function DialogConfirm(props: Props) {
             <DialogTitle variant="h6">
                 {title !== undefined ? title : "Czy na pewno chcesz to zrobić?"}
             </DialogTitle>
-            <DialogContent dividers>{content}</DialogContent>
+            <DialogContent dividers>
+                {content.split("\n").map((i, key) => {
+                    return <p key={key}>{i}</p>;
+                })}
+            </DialogContent>
             <DialogActions>
                 <Button variant="outlined" color="primary" fullWidth onClick={handleCancel}>
                     Anuluj

@@ -45,7 +45,7 @@ function NewPost() {
         >
             <Avatar
                 sx={{
-                    my: 3,
+                    mb: 1,
                     bgcolor: "primary.main",
                     width: "70px",
                     height: "70px",
@@ -54,7 +54,6 @@ function NewPost() {
             >
                 <PostAdd fontSize="large" />
             </Avatar>
-
             <Typography component="h1" variant="h4" mb={2}>
                 Nowa
             </Typography>

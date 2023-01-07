@@ -102,7 +102,9 @@ function Post({ post, handleDelete }: Props) {
                     <Divider />
                 </>
             )}
-
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent sx={{ mx: "2%", my: "2%" }}>{parse(post.content)}</CardContent>
+            </Collapse>
             <Stack
                 component={Button}
                 fullWidth
@@ -131,10 +133,6 @@ function Post({ post, handleDelete }: Props) {
                     <ExpandMore />
                 </ExpandMoreIcon>
             </Stack>
-
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent sx={{ mx: "2%", my: "2%" }}>{parse(post.content)}</CardContent>
-            </Collapse>
         </Card>
     );
 }

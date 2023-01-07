@@ -1,4 +1,4 @@
-import { Pagination, Skeleton, Typography } from "@mui/material";
+import { Fab, Pagination, Skeleton, TextField, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import DialogConfirm from "components/my/DialogConfirm";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -57,12 +57,6 @@ function Home() {
             alignItems="center"
             spacing={{ xs: 1, sm: 1.5, lg: 2 }}
         >
-            <Pagination
-                size="large"
-                count={numberOfPages}
-                page={page}
-                onChange={handlePageChange}
-            />
             {isLoaded ? (
                 posts ? (
                     generatePosts()
@@ -88,7 +82,7 @@ function Home() {
             />
             {post && (
                 <DialogConfirm
-                    content={`Czy na pewno chcesz usunąć post pod tytułem: ${post.title}?`}
+                    content={`Czy na pewno chcesz usunąć post pod tytułem:\n "${post.title}"`}
                     isDelete={true}
                     open={openDialog}
                     onClose={handleDecision}
